@@ -20,7 +20,7 @@ if __name__ == "__main__":
 amount_of_pictures = snakemake.wildcards.number
 
 # setup the filename to Snakefile output name
-filename = snakemake.output.picture
+filenames = snakemake.output.picture
 
 # Set up the image URL
 image_url = "https://pbs.twimg.com/media/ETl5iUZXsAEv0Jc.jpg"
@@ -34,9 +34,12 @@ if r.status_code == 200:
     r.raw.decode_content = True
     
     # Open a local file with wb ( write binary ) permission.
-    with open(filename,'wb') as f:
-        shutil.copyfileobj(r.raw, f)
-        
-    print('Image sucessfully Downloaded: ',filename)
+    
+    for name in filenames:
+            with open(name,'wb') as f:
+                shutil.copyfileobj(r.raw, f)
+
+            print('Image sucessfully Downloaded: ',name)
+
 else:
     print('Image Couldn\'t be retreived')
