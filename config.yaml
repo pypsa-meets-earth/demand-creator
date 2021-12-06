@@ -1,0 +1,14 @@
+# SPDX-FileCopyrightText: : 2021 The PyPSA-Africa Authors
+#
+# SPDX-License-Identifier: CC0-1.0
+
+version: 0.1.0
+
+wildcard:
+    number: [2, 4]
+
+
+cat-options:
+    salt-bae: true
+    fat-cat: false
+
