@@ -9,12 +9,13 @@ logging:
   format: "%(levelname)s:%(name)s:%(message)s"
 
 scenario:
-  simpl: ['']
-  ll: ['copt']
+  simpl: [""]
+  ll: ["copt"]
   clusters: [6]
   opts: [Co2L-3H]
 
-countries: ["NG", "NE"]
+countries:
+  ["NG", "NE"]
 
   # ['DZ', 'AO', 'BJ', 'BW', 'BF', 'BI', 'CM', 'CF', 'TD', 'CG', 'CD',
   # 'DJ', 'EG', 'GQ', 'ER', 'ET', 'GA', 'GH', 'GN', 'CI', 'KE', 'LS', 'LR', 'LY',
@@ -32,21 +33,21 @@ alternative_clustering: False
 
 # options for build_shapes
 build_shape_options:
-    gadm_layer_id: 1  # GADM level area used for the gadm_shapes. Codes are country-dependent but roughly: 0: country, 1: region/county-like, 2: municipality-like
-    update_file: False  # When true, all the input files are downloaded again and replace the existing files
-    out_logging: True  # When true, logging is printed to console
-    year: 2020  # reference year used to derive shapes, info on population and info on GDP
-    nprocesses: 5  # number of processes to be used in build_shapes
+  gadm_layer_id: 1 # GADM level area used for the gadm_shapes. Codes are country-dependent but roughly: 0: country, 1: region/county-like, 2: municipality-like
+  update_file: False # When true, all the input files are downloaded again and replace the existing files
+  out_logging: True # When true, logging is printed to console
+  year: 2020 # reference year used to derive shapes, info on population and info on GDP
+  nprocesses: 5 # number of processes to be used in build_shapes
 
 osm_data_cleaning_options:
-  names_by_shapes: True  # Set the country name based on the extended country shapes
-  threshold_voltage: 35000  # [V] minimum voltage threshold to keep the asset (cable, line, generator, etc.) [V]
-  tag_substation: "transmission"  # needed feature tag to be considered for the analysis. If empty, no filtering on the tag_substation is performed
-  add_line_endings: True  # When true, the line endings are added to the dataset of the substations
-  group_close_buses: True  # When true, the dataset of buses is filtered to merge close nodes and guarantee the matching among line endings in the same bus by voltage
+  names_by_shapes: True # Set the country name based on the extended country shapes
+  threshold_voltage: 35000 # [V] minimum voltage threshold to keep the asset (cable, line, generator, etc.) [V]
+  tag_substation: "transmission" # needed feature tag to be considered for the analysis. If empty, no filtering on the tag_substation is performed
+  add_line_endings: True # When true, the line endings are added to the dataset of the substations
+  group_close_buses: True # When true, the dataset of buses is filtered to merge close nodes and guarantee the matching among line endings in the same bus by voltage
 
 base_network:
-  min_voltage_substation_offshore: 35000  # [V] minimum voltage of the offshore substations
+  min_voltage_substation_offshore: 35000 # [V] minimum voltage of the offshore substations
   min_voltage_rebase_voltage: 35000
 
 load_options:
@@ -70,7 +71,7 @@ enable:
   # If "build_cutout" : true # requires cds API key https://cds.climate.copernicus.eu/api-how-to
   # More information https://atlite.readthedocs.io/en/latest/introduction.html#datasets
   build_cutout: false
-  build_natura_raster: false  # If True, then build_natura_raster can be run
+  build_natura_raster: false # If True, then build_natura_raster can be run
   # custom_busmap: false
 
 electricity:
@@ -154,8 +155,29 @@ renewable:
     corine:
       # Scholz, Y. (2012). Renewable energy based electricity supply at low costs:
       #  development of the REMix model and application for Europe. ( p.42 / p.28)
-      grid_codes: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
-                   24, 25, 26, 27, 28, 29, 31, 32]
+      grid_codes:
+        [
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          31,
+          32,
+        ]
       distance: 1000
       distance_grid_codes: [1, 2, 3, 4, 5, 6]
     natura: true
@@ -203,8 +225,32 @@ renewable:
     # sector: The economic potential of photovoltaics and concentrating solar
     # power." Applied Energy 135 (2014): 704-720.
     correction_factor: 0.854337
-    corine: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
-             14, 15, 16, 17, 18, 19, 20, 26, 31, 32]
+    corine:
+      [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        26,
+        31,
+        32,
+      ]
     natura: true
     potential: simple # or conservative
     clip_p_max_pu: 1.e-2
@@ -240,7 +286,6 @@ costs:
   emission_prices: # in currency per tonne emission, only used with the option Ep
     co2: 0.
 
-
 solving:
   options:
     formulation: kirchhoff
@@ -262,7 +307,6 @@ solving:
     AggFill: 0
     PreDual: 0
     GURO_PAR_BARDENSETHRESH: 200
-
 
 plotting:
   map:
